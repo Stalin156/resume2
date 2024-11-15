@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stalin Pereira - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #100a6d;
+            --secondary-color: #380c36;
+            --background-color: #f0f4f8;
+            --text-color: #131615;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 1s ease-out;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 50px,
+                rgba(255,255,255,0.1) 50px,
+                rgba(255,255,255,0.1) 100px
+            );
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation with Hover Effects */
+        nav {
+            background: #2c3e50;
+            padding: 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections with Hover Effects */
+        .section {
+            background: white;
+            margin: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+        }
+
+        /* Achievement Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .achievements-section ul li {
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .achievements-section ul li:nth-child(1) { animation-delay: 0.2s; }
+        .achievements-section ul li:nth-child(2) { animation-delay: 0.4s; }
+        .achievements-section ul li:nth-child(3) { animation-delay: 0.6s; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* Download Button with Glow Effect */
+        .download-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(46,204,113,0.5);
+        }
+        
+        /* Chatbox Styling */
+        #chatbox {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        #chatbox input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #chatbox button {
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #chatbox button:hover {
+            background-color: #5db1e9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Stalin Pereira</h1>
+            <p>Football Captain | Scholar | Musician</p>
+            <button class="download-btn" onclick="downloadResume()">Download Resume</button>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li class="dropdown">
+                <a href="#achievements">Achievements</a>
+                <ul class="dropdown-content">
+                    <li><a href="#academics">Academics</a></li>
+                    <li><a href="#sports">Sports</a></li>
+                    <li><a href="#music">Music</a></li>
+                </ul>
+            </li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am Stalin Pereira, an all-rounder with excellent achievements in academics, sports, and music. 
+            With a passion for football, I have represented India internationally and led various teams in prestigious tournaments.</p>
+            <p>My other passions include music (playing violin and piano), academics, and sports. I am also skilled in art and digital photography.</p>
+        </div>
+    </section>
+
+    <section id="achievements" class="section achievements-section">
+        <div class="container">
+            <h2>Key Achievements</h2>
+            <div id="academics">
+                <h3>Academics</h3>
+                <ul>
+                    <li>95% in ICSE Board Exams</li>
+                    <li>General Proficiency in multiple subjects</li>
+                    <li>Recipient of numerous scholarships: Citizen Bank, Bombay Catholic Sabha</li>
+                </ul>
+            </div>
+            <div id="sports">
+                <h3>Sports</h3>
+                <ul>
+                    <li>Represented India at four international football tournaments</li>
+                    <li>Bronze medal at Upper Austria Cup, Europe</li>
+                    <li>MSSA Football winner (2014, 2016, 2018)</li>
+                    <li>Athletics: Gold Medal in Long Jump, Silver in 100m, 200m</li>
+                </ul>
+            </div>
+            <div id="music">
+                <h3>Music & Arts</h3>
+                <ul>
+                    <li>Advanced violinist; performed at Tata Theatre, NCPA</li>
+                    <li>Proficient in piano, guitar, and keyboard</li>
+                    <li>Won multiple art competitions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p><strong>Email:</strong> <a href="mailto:pereirastalin1@gmail.com">pereirastalin1@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+917506962777">+91 75069 62xxx</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/Stalin-pereira" target="_blank">Stalin's LinkedIn</a></p>
+        </div>
+    </section>
+
+    <!-- Chatbox -->
+    <div id="chatbox">
+        <h3>Chat with me</h3>
+        <input type="text" id="chatInput" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function downloadResume() {
+            window.open('"C:\\Users\\universe@316\\Desktop\\New folder\\Joshua Mendes-Profile.pdf"', '_blank');
+        }
+
+        function sendMessage() {
+            let message = document.getElementById('chatInput').value;
+            if (message.trim() !== "") {
+                alert("Message sent: " + message);
+                document.getElementById('chatInput').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
